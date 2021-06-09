@@ -3,45 +3,35 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Word 2019 multilingual update pkg,
-and appends the version to the end of the filename.
-
-CHANNEL can be set to several values in order to get more frequent updates
-that can be used for testing purposes. See the explanations in the 'Channel'
-table at http://macadmins.software/docs/MAU_ManifestServer.pdf. Supported
-values are 'Production', 'InsiderSlow', 'InsiderFast', or a custom UUID to be
-inserted into the Base URL.
-
-LOCALE_ID sets the locale for a descriptive text that will be
-extracted from the Microsoft update metadata. See
-https://msdn.microsoft.com/en-us/goglobal/bb964664.aspx
-for more information about locale IDs.
-
-VERSION supports three values: 'latest', which will download
-the latest full update for the given CHANNEL, 'latest-delta',
-which will download the latest delta update for the given CHANNEL,
-and 'latest-standalone' which will download the latest standalone
-installer for the given CHANNEL. 'latest-standalone' does not support
-'InsiderFast' CHANNEL.
-</string>
+    <string>Uses parent pkg recipe to download latest Google Chrome and import it into the JSS.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.download.MSWord2019</string>
-    <key>MinimumVersion</key>
-    <string>1.4</string>
+    <string>com.mcoe.jss-upload.MSWord2019</string>
     <key>Input</key>
     <dict>
-        <key>CHANNEL</key>
-        <string>Production</string>
-        <key>LOCALE_ID</key>
-        <string>1033</string>
+        <key>CATEGORY</key>
+        <string>Applications</string>
         <key>NAME</key>
         <string>MSWord2019</string>
-        <key>PRODUCT</key>
-        <string>Word2019</string>
-        <key>VERSION</key>
-        <string>latest</string>
     </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.download.MSOfficeMacProduct</string>
+    <string>com.github.autopkg.install.MSWord2019</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>category</key>
+                <string>%CATEGORY%</string>
+                <key>prod_name</key>
+                <string>%NAME%</string>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+            </dict>
+            <key>Processor</key>
+            <string>JSSImporter</string>
+        </dict>
+    </array>
 </dict>
 </plist>
