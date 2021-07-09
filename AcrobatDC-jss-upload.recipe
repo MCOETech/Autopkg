@@ -16,7 +16,7 @@
     <key>MinimumVersion</key>
     <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.timsutton.download.adobe-acrobat-pro-base</string>
+    <string>com.github.jss-recipes.jss.AdobeAcrobatDC</string>
     <key>Process</key>
     <array>
         <dict>
